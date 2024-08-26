@@ -10,7 +10,7 @@ var animation_state=state.IDLE
 const SPEED = 100
 const jump_power = -900
 const SPRINT_VELOCITY = 100
-const JUMP_VELOCITY = 4 
+const JUMP_VELOCITY = 2 
 const acc = 50 
 const friction = 70
 
