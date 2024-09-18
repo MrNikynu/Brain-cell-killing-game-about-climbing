@@ -8,14 +8,14 @@ var animation_state=state.IDLE
 
 
 const SPEED = 100
-const jump_power = -900
+const jump_power = -700
 const SPRINT_VELOCITY = 100
-const JUMP_VELOCITY = 2 
+#const JUMP_VELOCITY = 1
 const acc = 50 
 const friction = 70
 
 
-const gravity = 80
+const gravity = 74
 
 const wall_jump_pushback = 100 
 
@@ -62,11 +62,11 @@ func _physics_process(delta):
 		if velocity.y<0:
 			animation_state=state.JUMP
 	
-	velocity.y += gravity * delta
+	#velocity.y += gravity * delta
 	
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
 		
 		
 	var direction = Input.get_axis("left", "right")
@@ -114,7 +114,7 @@ func jump():
 		if is_on_floor():
 			animation_state=state.JUMP
 			
-			velocity.y = jump_power 
+			velocity.y = jump_power
 		if is_on_wall() and Input.is_action_pressed("right"):
 			velocity.y = jump_power 
 			velocity.x = -wall_jump_pushback
@@ -158,3 +158,7 @@ func _unhandled_input(event):
 
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://menu.tscn")
+
+
+func _on_collision_shape_2d_child_entered_tree(node: Node) -> void:
+	pass # Replace with function body.

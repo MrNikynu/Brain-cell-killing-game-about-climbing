@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://coi8dxggae7wi"]
+
+[ext_resource type="AudioStream" uid="uid://c3s0em04q3qkt" path="res://Carefree(chosic.com).mp3" id="1_vade7"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_vade7")
+volume_db = 1.0
+autoplay = true
