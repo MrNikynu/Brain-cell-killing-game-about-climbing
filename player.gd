@@ -161,4 +161,4 @@ func _on_button_pressed():
 
 
 func _on_collision_shape_2d_child_entered_tree(node: Node) -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://win.tscn")
