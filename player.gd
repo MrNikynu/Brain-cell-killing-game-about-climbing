@@ -22,7 +22,7 @@ const wall_jump_pushback = 100
 const wall_slide_gravity = 100
 var is_wall_sliding = false
 
-
+#flips and plays other animations 
 func animation_update(direction):
 	if direction<0:
 		animator.flip_h=true
@@ -35,7 +35,7 @@ func animation_update(direction):
 			anim_player.play("right walk")
 		state.JUMP:
 			anim_player.play("Jump")
-			
+			#states difrent animations
 func update_state():
 	if animation_state==state.IDLE:
 		return
@@ -68,7 +68,7 @@ func _physics_process(delta):
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 		
-		
+		#this changes the direction the player faces 
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED 
@@ -89,7 +89,7 @@ func _physics_process(delta):
 	jump()
 	wall_slide(delta)
 	player_movement()
-
+#makes the chariter slide on walls /jump
 func player_movement():
 	move_and_slide()
 
@@ -124,7 +124,7 @@ func jump():
 		elif is_on_floor():
 			animation_state=state.IDLE
 			
-	
+	#pushes and makes chacitor fall and jump on walls 
 func wall_slide(delta):
 	if is_on_wall() and !is_on_floor():
 		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
@@ -150,15 +150,15 @@ func wall_slide(delta):
 func die():
 	queue_free()
 
-
+#resets you to the start
 func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
 
-
+#takes you to the menu 
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://menu.tscn")
 
-
+#takes you to world 2 
 func _on_collision_shape_2d_child_entered_tree(node: Node) -> void:
-	get_tree().change_scene_to_file("res://win.tscn")
+	get_tree().change_scene_to_file("res://world_2")
